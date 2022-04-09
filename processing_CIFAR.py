@@ -12,7 +12,7 @@ def unpickle(file):
     return x, y
 
 
-def load_CIFAR(base_path, first_time=False):
+def load_CIFAR(base_path, first_time=True):
     # x_train, x_test, y_train, y_test = None, None, None, None
 
     if first_time:
