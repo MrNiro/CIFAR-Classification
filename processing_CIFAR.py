@@ -54,5 +54,5 @@ def load_CIFAR(base_path, first_time=True):
 
 
 if __name__ == '__main__':
-    load_CIFAR("./cifar-10-data", True)
+    load_CIFAR("./cifar-10-data", first_time=True)
     print("Preprocessing done!")
