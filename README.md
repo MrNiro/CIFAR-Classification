@@ -1,4 +1,4 @@
-# CIFAR with CNN
+# CIFAR Classification
 
 This a simple project focus on classification on CIFAR-10 dataset, using Keras.
 The model structure is based on VGG-16 and ResNet.
