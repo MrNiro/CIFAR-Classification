@@ -12,10 +12,16 @@ def unpickle(file):
     return x, y
 
 
-def load_CIFAR(base_path, first_time=True):
-    # x_train, x_test, y_train, y_test = None, None, None, None
+def load_CIFAR(base_path):
+    # Preprocessing will save split data local to make sure
+    # train & validation not change among multi experiments
+    try:
+        x_train = np.load(base_path + "/x_train.npy")
+        y_train = np.load(base_path + "/y_train.npy")
+        x_test = np.load(base_path + "/x_test.npy")
+        y_test = np.load(base_path + "/y_test.npy")
 
-    if first_time:
+    except FileNotFoundError:
         x1, y1 = unpickle(base_path + "/data_batch_1")
         x2, y2 = unpickle(base_path + "/data_batch_2")
         x3, y3 = unpickle(base_path + "/data_batch_3")
@@ -35,7 +41,7 @@ def load_CIFAR(base_path, first_time=True):
         np.save(base_path + "/x_test", x_test)
         np.save(base_path + "/y_test", y_test)
 
-        # # view the image
+        # # to view the image
         # import cv2
         # for i in range(10):
         #     test = x_train[i]
@@ -44,15 +50,9 @@ def load_CIFAR(base_path, first_time=True):
         #     cv2.imshow("test", test)
         #     cv2.waitKey(1000)
 
-    else:
-        x_train = np.load(base_path + "/x_train.npy")
-        y_train = np.load(base_path + "/y_train.npy")
-        x_test = np.load(base_path + "/x_test.npy")
-        y_test = np.load(base_path + "/y_test.npy")
-
     return x_train, x_test, y_train, y_test
 
 
 if __name__ == '__main__':
-    load_CIFAR("./cifar-10-data", first_time=True)
+    load_CIFAR("./cifar-10-data")
     print("Preprocessing done!")
